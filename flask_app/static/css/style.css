@@ -1,0 +1,16 @@
+body { 
+    background-color:#212529 ;
+    color: azure;
+}
+
+.messages {
+    width: 100%;
+
+}
+.right, .left {
+    width: 40%;
+}
+
+.add-car { 
+    align-self: flex-end;
+}

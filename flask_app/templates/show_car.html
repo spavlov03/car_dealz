@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Dealz</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+</head>
+<body>
+    <div class="container">
+        <header class="d-flex justify-content-sm-end mt-3">
+            <div>
+                <a href="/dashboard" class="btn btn-success">Dashboard</a>
+                <a href="/logout" class="btn btn-danger">Logout</a>
+            </div>
+        </header>
+        <main class="border border-light p-3 m-5">
+            <h5>{{"${:,.0F}".format(this_car.price)}}</h5>
+            <p>Model: {{this_car.model}}</p>
+            <p>Make: {{this_car.make}}</p>
+            <p>Year: {{this_car.year}}</p>
+            <p>Description:</p> 
+            <p>{{this_car.description}}</p>
+            <div class="d-flex justify-content-sm-between">
+                <h6>Seller: {{this_car.seller.first_name}} {{this_car.seller.last_name}}</h6>
+                <a href="/purchase/{{this_car.id}}" class="btn btn-outline-info">Purchase</a>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

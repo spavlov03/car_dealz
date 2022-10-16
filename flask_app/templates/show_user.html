@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Dealz</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+</head>
+<body>
+    <div class="container">
+        <header class="d-flex justify-content-sm-between mt-3">
+            <h2>{{user.first_name}}`s Purchases</h2>
+            <div>
+                <a href="/dashboard" class="btn btn-success">Dashboard</a>
+                <a href="/logout" class="btn btn-danger">Logout</a>
+            </div>
+        </header>
+        <main>
+            <table class="table text-warning mt-3">
+                <thead>
+                    <th>Make</th>
+                    <th>Model</th>
+                    <th>Year</th>
+                </thead>
+                {% if not cars_of_user: %}
+                <tr>
+                    <td>Go buy some cars</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                {% else: %}
+                {% for car in cars_of_user: %}
+                <tr>
+                    <td>{{car.make}}</td>
+                    <td>{{car.model}}</td>
+                    <td>{{car.year}}</td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </table>
+        </main>
+    </div>
+</body>
+</html>

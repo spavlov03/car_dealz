@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Dealz</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+</head>
+<body>
+    <div class="container">
+        <header class="d-flex justify-content-sm-between mt-3">
+            <h2>Edit {{this_car.model}}</h2>
+            <div>
+                <a href="/dashboard" class="btn btn-success">Dashboard</a>
+                <a href="/logout" class="btn btn-danger">Logout</a>
+            </div>
+        </header>
+        <main>
+            <div>
+                <form action="/car_edit/{{this_car.id}}" method="post" class="d-flex flex-column w-25">
+                    <label for="price">Price:</label>
+                    <input type="number" name="price" value="{{this_car.price}}" class="bg-dark text-light">
+                    <label for="model">Model:</label>
+                    <input type="text" name="model" value="{{this_car.model}}" class="bg-dark text-light">
+                    <label for="make">Make:</label>
+                    <input type="text" name="make" value="{{this_car.make}}" class="bg-dark text-light">
+                    <label for="year">Year:</label>
+                    <input type="number" name="year" value="{{this_car.year}}" class="bg-dark text-light">
+                    <label for="description">Description:</label>
+                    <textarea name="description" cols="30" rows="3" class="bg-dark border border-light text-light">{{this_car.description}}</textarea>
+                    <input type="submit" value="Update" class="btn btn-outline-info mt-3 w-50">
+                </form>
+                {% with messages = get_flashed_messages(category_filter=['car']) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="messages"><p class="text-danger">{{message}}</p></div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </main>
+    </div>
+</body>
+</html>
